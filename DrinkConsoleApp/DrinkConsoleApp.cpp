@@ -3,6 +3,7 @@
 #include <iomanip>
 //#include <array>
 #include "DrinkItem.h"
+#include "OrderItem.h"
 #include "DrinkConsoleApp.h"
 
 void AddNewDrink(vector<DrinkItem>& drinks)
@@ -41,12 +42,25 @@ void DisplayDrinkMenu(vector<DrinkItem>& drinks) {
 	cout << "--------------------------------------" << endl;
 }
 
+void OrderDrink(vector<OrderItem>& order) {
+
+}
+
 int main()
 {
 	vector<DrinkItem> drinks;
+	vector<OrderItem> order;
 	//array<int, 5> a = { 1, 2, 3, 4, 5 };
 	//array< array<int, 2>, 3> b = { 1, 2, 3, 4, 5, 6 };
 
+	//新增飲料品項
 	AddNewDrink(drinks);
+
+	//顯示所有飲料菜單
 	DisplayDrinkMenu(drinks);
+
+	//點餐
+	OrderDrink(order);
+
+	//計算總金額與售價
 }

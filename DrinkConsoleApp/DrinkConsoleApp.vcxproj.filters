@@ -21,12 +21,18 @@
     <ClCompile Include="DrinkItem.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="OrderItem.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrinkItem.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="DrinkConsoleApp.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderItem.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>
