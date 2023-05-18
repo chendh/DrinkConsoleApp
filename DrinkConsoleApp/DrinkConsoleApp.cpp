@@ -23,21 +23,21 @@ void DisplayDrinkMenu(vector<DrinkItem>& drinks) {
 	cout << setw(4) << "編號" << setw(10) << "飲料名稱" << setw(10) << "大小" << setw(10) << "售價" << endl;
 	cout << "--------------------------------------" << endl;
 
-	//int i = 1;
-	//for (DrinkItem item : drinks) {
-	//	cout << setw(4) << i;
-	//	item.displayItem();
-	//	i++;
-	//}
-
 	int i = 1;
-	vector<DrinkItem>::iterator v = drinks.begin();
-	while (v != drinks.end()) {
+	for (DrinkItem item : drinks) {
 		cout << setw(4) << i;
-		v->displayItem();
-		v++;
+		item.displayItem();
 		i++;
 	}
+
+	//int i = 1;
+	//vector<DrinkItem>::iterator v = drinks.begin();
+	//while (v != drinks.end()) {
+	//	cout << setw(4) << i;
+	//	v->displayItem();
+	//	v++;
+	//	i++;
+	//}
 	cout << "--------------------------------------" << endl;
 }
 
