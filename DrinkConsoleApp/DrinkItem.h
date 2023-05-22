@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 class DrinkItem
@@ -10,5 +11,6 @@ class DrinkItem
 	int drinkPrice;
 public:
 	DrinkItem(const string&, const string&, int);
+	void displayItem();
 };
 

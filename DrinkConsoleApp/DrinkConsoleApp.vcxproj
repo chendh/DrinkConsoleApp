@@ -131,6 +131,7 @@
     <ClCompile Include="DrinkItem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrinkConsoleApp.h" />
     <ClInclude Include="DrinkItem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
