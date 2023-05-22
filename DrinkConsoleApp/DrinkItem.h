@@ -1,0 +1,15 @@
+#pragma once
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+class DrinkItem
+{
+	string drinkName;
+	string drinkSize;
+	int drinkPrice;
+public:
+	DrinkItem(const string&, const string&, const int);
+	void displayItem();
+};
