@@ -70,7 +70,7 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
 	string messageTakeIn = (takeIn == 1) ? "內用" : "外帶";
 
 	int totalPrice = 0;
-	int sellPrice = 0;
+	int salePrice = 0;
 	string messagePrice = "";
 	cout << "--------------------------------------" << endl;
 	cout << "您所點的餐點如下：" << endl;
@@ -81,26 +81,26 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
 		totalPrice += drinkitem.getPrice() * orderitem.getQuantity();
 	}
 	if (totalPrice >= 500) {
-		sellPrice = totalPrice * 0.8;
+		salePrice = totalPrice * 0.8;
 		messagePrice = "訂購滿500元以上者8折";
 	}
 	else if (totalPrice >= 300) {
-		sellPrice = totalPrice * 0.9;
+		salePrice = totalPrice * 0.9;
 		messagePrice = "訂購滿300元以上者85折";
 	}
 	else if (totalPrice >= 200) {
-		sellPrice = totalPrice * 0.9;
+		salePrice = totalPrice * 0.9;
 		messagePrice = "訂購滿200元以上者9折";
 	}
 	else {
-		sellPrice = totalPrice;
+		salePrice = totalPrice;
 		messagePrice = "訂購未滿200元者無折扣";
 	}
 	cout << "--------------------------------------" << endl;
 	cout << "訂購方式：" << messageTakeIn << endl;
 	cout << "總金額：" << totalPrice << endl;
 	cout << messagePrice << endl;
-	cout << "售價：" << sellPrice << endl;
+	cout << "售價：" << salePrice << endl;
 	cout << "--------------------------------------" << endl;
 }
 
