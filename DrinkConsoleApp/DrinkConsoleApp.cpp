@@ -57,7 +57,7 @@ void OrderDrink(vector<OrderItem>& order, vector<DrinkItem>& drinks) {
 		else {
 			OrderItem orderitem = OrderItem(index, qty);
 			order.push_back(orderitem);
-			orderitem.displayItem(drinks);
+			orderitem.displayOrderItem(drinks);
 			cout << "是否繼續點餐？(Y或y鍵繼續訂餐)";
 			cin >> ans;
 		}
@@ -79,7 +79,7 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
 	cout << "您所點的餐點如下：" << endl;
 	cout << "--------------------------------------" << endl;
 	for (OrderItem orderitem : order) {
-		orderitem.displayItem(drinks);
+		orderitem.displayOrderItem(drinks);
 		totalPrice += drinks[orderitem.getIndex() - 1].getPrice() * orderitem.getQuantity();
 	}
 	if (totalPrice >= 500) {

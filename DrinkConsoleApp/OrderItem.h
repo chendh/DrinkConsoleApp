@@ -12,6 +12,6 @@ public:
 	OrderItem(int, int);
 	int getIndex();
 	int getQuantity();
-	void displayItem(vector<DrinkItem>&);
+	void displayOrderItem(vector<DrinkItem>&);
 };
 
