@@ -1,10 +1,4 @@
-﻿#include <iostream>
-#include <vector>
-#include <iomanip>
-#include "DrinkItem.h"
-#include "OrderItem.h"
-#include "DrinkConsoleApp.h"
-using namespace std;
+﻿#include "DrinkConsoleApp.h"
 
 void AddNewDrink(vector<DrinkItem>& drinks)
 {

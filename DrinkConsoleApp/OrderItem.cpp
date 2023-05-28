@@ -18,6 +18,6 @@ int OrderItem::getQuantity()
 
 void OrderItem::displayOrderItem(vector<DrinkItem>& drinks)
 {
-	DrinkItem item = drinks[itemIndex - 1];
-	cout << "您所點的餐點為: " << item.getName() << " " << item.getSize() << "，每杯 " << item.getPrice() << "元， " << quantity << "杯，小計" << item.getPrice() * quantity << "元" << endl;
+	DrinkItem drinkitem = drinks[itemIndex - 1];
+	cout << "您所點的餐點為: " << drinkitem.getName() << " " << drinkitem.getSize() << "，每杯 " << drinkitem.getPrice() << "元， " << quantity << "杯，小計" << drinkitem.getPrice() * quantity << "元" << endl;
 }

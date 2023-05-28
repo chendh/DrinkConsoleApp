@@ -14,4 +14,3 @@ public:
 	int getQuantity();
 	void displayOrderItem(vector<DrinkItem>&);
 };
-

@@ -1,4 +1,10 @@
 #pragma once
+#include <iostream>
+#include <vector>
+#include <iomanip>
+#include "DrinkItem.h"
+#include "OrderItem.h"
+using namespace std;
 
 void AddNewDrink(std::vector<DrinkItem>& drinks);
 
