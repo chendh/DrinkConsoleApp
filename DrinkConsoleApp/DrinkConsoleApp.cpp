@@ -42,8 +42,68 @@ void DisplayDrinkMenu(vector<DrinkItem>& drinks) {
 	cout << "--------------------------------------" << endl;
 }
 
-void OrderDrink(vector<OrderItem>& order) {
+void OrderDrink(vector<OrderItem>& order, vector<DrinkItem>& drinks) {
+	int index;
+	int qty;
+	char ans = 'Y';
+	do {
+		cout << "請輸入要點的飲料編號：";
+		cin >> index;
+		cout << "請輸入要點的飲料數量：";
+		cin >> qty;
+		if (index < 1 || index > drinks.size()) {
+			cout << "輸入錯誤，請重新輸入" << endl;
+		}
+		else {
+			OrderItem orderitem = OrderItem(index, qty);
+			order.push_back(orderitem);
+			orderitem.displayItem(drinks);
+			cout << "是否繼續點餐？(Y或y鍵繼續訂餐)";
+			cin >> ans;
+		}
+	} while (ans == 'Y' || ans == 'y');
+}
 
+void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
+{
+	int takeIn = 1;
+
+	cout << "請問是內用還是外帶？(1:內用 2:外帶): ";
+	cin >> takeIn;
+	string messageTakeIn = (takeIn == 1) ? "內用" : "外帶";
+
+	int totalPrice = 0;
+	int sellPrice = 0;
+	string messagePrice = "";
+	cout << "--------------------------------------" << endl;
+	cout << "您所點的餐點如下：" << endl;
+	cout << "--------------------------------------" << endl;
+	for (OrderItem orderitem : order) {
+		orderitem.displayItem(drinks);
+		totalPrice += drinks[orderitem.getIndex() - 1].getPrice() * orderitem.getQuantity();
+	}
+	if (totalPrice >= 500) {
+		sellPrice = totalPrice * 0.8;
+		messagePrice = "訂購滿500元以上者8折";
+	}
+	else if (totalPrice >= 300) {
+		sellPrice = totalPrice * 0.9;
+		messagePrice = "訂購滿300元以上者85折";
+	}
+	else if (totalPrice >= 200) {
+		sellPrice = totalPrice * 0.9;
+		messagePrice = "訂購滿200元以上者9折";
+	}
+	else {
+		sellPrice = totalPrice;
+		messagePrice = "訂購未滿200元者無折扣";
+	}
+	cout << "--------------------------------------" << endl;
+	cout << "訂購方式：" << messageTakeIn << endl;
+	cout << "總金額：" << totalPrice << endl;
+	cout << messagePrice << endl;
+	cout << "售價：" << sellPrice << endl;
+	cout << "--------------------------------------" << endl;
 }
 
 int main()
@@ -60,7 +120,8 @@ int main()
 	DisplayDrinkMenu(drinks);
 
 	//點餐
-	OrderDrink(order);
+	OrderDrink(order, drinks);
 
 	//計算總金額與售價
+	CalculateSalePrice(order, drinks);
 }
