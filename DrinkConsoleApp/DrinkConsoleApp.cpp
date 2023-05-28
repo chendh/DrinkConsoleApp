@@ -1,10 +1,10 @@
 ﻿#include <iostream>
 #include <vector>
 #include <iomanip>
-//#include <array>
 #include "DrinkItem.h"
 #include "OrderItem.h"
 #include "DrinkConsoleApp.h"
+using namespace std;
 
 void AddNewDrink(vector<DrinkItem>& drinks)
 {
@@ -52,7 +52,10 @@ void OrderDrink(vector<OrderItem>& order, vector<DrinkItem>& drinks) {
 		cout << "請輸入要點的飲料數量：";
 		cin >> qty;
 		if (index < 1 || index > drinks.size()) {
-			cout << "輸入錯誤，請重新輸入" << endl;
+			cout << "輸入飲料品項錯誤，請重新輸入" << endl;
+		}
+		else if (qty < 1) {
+			cout << "輸入飲料數量錯誤，請重新輸入" << endl;
 		}
 		else {
 			OrderItem orderitem = OrderItem(index, qty);
@@ -80,7 +83,8 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
 	cout << "--------------------------------------" << endl;
 	for (OrderItem orderitem : order) {
 		orderitem.displayOrderItem(drinks);
-		totalPrice += drinks[orderitem.getIndex() - 1].getPrice() * orderitem.getQuantity();
+		DrinkItem drinkitem = drinks[orderitem.getIndex() - 1];
+		totalPrice += drinkitem.getPrice() * orderitem.getQuantity();
 	}
 	if (totalPrice >= 500) {
 		sellPrice = totalPrice * 0.8;
