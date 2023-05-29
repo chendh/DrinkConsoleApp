@@ -9,4 +9,6 @@ class OrderItem
 public:
 	OrderItem(int, int);
 	void displayOrderItem(vector<DrinkItem>&);
+	int getIndex();
+	int getQuantity();
 };
