@@ -1,15 +1,21 @@
-﻿#include <iostream>
-#include <vector>
-#include <iomanip>
-#include "DrinkItem.h"
-#include "DrinkConsoleApp.h"
+﻿#include "DrinkConsoleApp.h"
 
 int main()
 {
     vector<DrinkItem> drinks;
+    vector<OrderItem> order;
 
+    //新增飲料品項
     AddNewDrink(drinks);
+
+    //顯示所有飲料菜單
     DisplayDrinkMenu(drinks);
+
+    //訂飲料
+    OrderDrink(order);
+
+    //計算總金額與售價
+    CalculateSalePrice(order);
     return 0;
 }
 
@@ -56,4 +62,12 @@ void DisplayDrinkMenu(vector<DrinkItem>& drinks) {
 
     cout << "----------------------------------" << endl;
     cout << "總共有" << drinks.size() << "項飲品" << endl;
+}
+
+void OrderDrink(vector<OrderItem>& order) {
+    cout << "開始點餐" << endl;
+}
+
+void CalculateSalePrice(vector<OrderItem>& order) {
+    cout << "計算總金額與售價";
 }

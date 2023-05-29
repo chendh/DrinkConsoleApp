@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="DrinkConsoleApp.cpp" />
     <ClCompile Include="DrinkItem.cpp" />
+    <ClCompile Include="OrderItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrinkConsoleApp.h" />
     <ClInclude Include="DrinkItem.h" />
+    <ClInclude Include="OrderItem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
