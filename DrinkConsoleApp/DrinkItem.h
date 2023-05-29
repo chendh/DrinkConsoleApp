@@ -12,5 +12,8 @@ class DrinkItem
 public:
 	DrinkItem(const string&, const string&, int);
 	void displayItem();
+	string getName();
+	string getSize();
+	int getPrice();
 };
 
