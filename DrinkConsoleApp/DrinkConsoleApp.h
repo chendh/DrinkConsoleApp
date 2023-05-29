@@ -11,6 +11,6 @@ void AddNewDrink(vector<DrinkItem>&);
 
 void DisplayDrinkMenu(vector<DrinkItem>&);
 
-void OrderDrink(vector<OrderItem>&);
+void OrderDrink(vector<OrderItem>&, vector<DrinkItem>&);
 
-void CalculateSalePrice(vector<OrderItem>&);
+void CalculateSalePrice(vector<OrderItem>&, vector<DrinkItem>&);
