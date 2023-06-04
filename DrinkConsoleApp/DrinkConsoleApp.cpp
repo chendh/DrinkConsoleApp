@@ -4,14 +4,51 @@ void AddNewDrink(vector<DrinkItem>& drinks)
 {
 	//DrinkItem drink1("紅茶", "大杯", 60);
 	//drinks.push_back(drink1);
-	drinks.push_back(DrinkItem("紅茶", "大杯", 60));
-	drinks.push_back(DrinkItem("紅茶", "小杯", 40));
-	drinks.push_back(DrinkItem("綠茶", "大杯", 60));
-	drinks.push_back(DrinkItem("綠茶", "小杯", 40));
-	drinks.push_back(DrinkItem("咖啡", "大杯", 70));
-	drinks.push_back(DrinkItem("咖啡", "小杯", 50));
-	drinks.push_back(DrinkItem("可樂", "大杯", 40));
-	drinks.push_back(DrinkItem("可樂", "小杯", 20));
+	//drinks.push_back(DrinkItem("紅茶", "大杯", 60));
+	//drinks.push_back(DrinkItem("紅茶", "小杯", 40));
+	//drinks.push_back(DrinkItem("綠茶", "大杯", 60));
+	//drinks.push_back(DrinkItem("綠茶", "小杯", 40));
+	//drinks.push_back(DrinkItem("咖啡", "大杯", 70));
+	//drinks.push_back(DrinkItem("咖啡", "小杯", 50));
+	//drinks.push_back(DrinkItem("可樂", "大杯", 40));
+	//drinks.push_back(DrinkItem("可樂", "小杯", 20));
+
+	string filename{"drinks.csv"};
+	string filecontent = ReadFile(filename);
+	vector<string> lines = Split(filecontent, '\n');
+	for (string line : lines) {
+		vector<string> fields = Split(line, ',');
+		if (fields.size() == 3) {
+			string name = fields[0];
+			string size = fields[1];
+			int price = stoi(fields[2]);
+			DrinkItem drinkitem = DrinkItem(name, size, price);
+			drinks.push_back(drinkitem);
+		}
+	}
+}
+
+string ReadFile(const string& filename)
+{
+	auto ss = ostringstream();
+	ifstream input_file(filename);
+	if (!input_file.is_open()) {
+		cout << "無法讀取檔案 - '" << filename << "'" << endl;
+		return "";
+	}
+	ss << input_file.rdbuf();
+	return ss.str();
+}
+
+vector<string> Split(const string& s, char delimiter)
+{
+	vector<string> tokens;
+	string token;
+	istringstream tokenStream(s);
+	while (getline(tokenStream, token, delimiter)) {
+		tokens.push_back(token);
+	}
+	return tokens;
 }
 
 void DisplayDrinkMenu(vector<DrinkItem>& drinks) {
@@ -65,16 +102,19 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
 {
 	int takeIn = 1;
 
+	cout << endl;
 	cout << "請問是內用還是外帶？(1:內用 2:外帶): ";
 	cin >> takeIn;
 	string messageTakeIn = (takeIn == 1) ? "內用" : "外帶";
 
-	int totalPrice = 0;
-	int salePrice = 0;
-	string messagePrice = "";
 	cout << "--------------------------------------" << endl;
 	cout << "您所點的餐點如下：" << endl;
 	cout << "--------------------------------------" << endl;
+
+	int totalPrice = 0;
+	int salePrice = 0;
+	string messagePrice = "";
+
 	for (OrderItem orderitem : order) {
 		orderitem.displayOrderItem(drinks);
 		DrinkItem drinkitem = drinks[orderitem.getIndex() - 1];
@@ -102,14 +142,39 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks)
 	cout << messagePrice << endl;
 	cout << "售價：" << salePrice << endl;
 	cout << "--------------------------------------" << endl;
+
+	//列印訂單
+	PrintOrder(order, drinks, messageTakeIn, totalPrice, messagePrice, salePrice);
+}
+
+void PrintOrder(vector<OrderItem>& order, vector<DrinkItem>& drinks, string messageTakeIn, int totalPrice, string messagePrice, int salePrice)
+{
+	string filename{ "order.txt" };
+	ofstream output_file(filename);
+	if (!output_file.is_open()) {
+		cout << "無法寫入檔案 - '" << filename << "'" << endl;
+		return;
+	}
+	output_file << "--------------------------------------" << endl;
+	output_file << "您所點的餐點如下：" << endl;
+	output_file << "--------------------------------------" << endl;
+
+	for (OrderItem orderitem : order) {
+		orderitem.printOrderItem(output_file, drinks);
+	}
+
+	output_file << "--------------------------------------" << endl;
+	output_file << "訂購方式：" << messageTakeIn << endl;
+	output_file << "總金額：" << totalPrice << endl;
+	output_file << messagePrice << endl;
+	output_file << "售價：" << salePrice << endl;
+	output_file << "--------------------------------------" << endl;
 }
 
 int main()
 {
 	vector<DrinkItem> drinks;
 	vector<OrderItem> order;
-	//array<int, 5> a = { 1, 2, 3, 4, 5 };
-	//array< array<int, 2>, 3> b = { 1, 2, 3, 4, 5, 6 };
 
 	//新增飲料品項
 	AddNewDrink(drinks);

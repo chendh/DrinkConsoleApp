@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "DrinkItem.h"
 using namespace std;
 
@@ -13,4 +14,5 @@ public:
 	int getIndex();
 	int getQuantity();
 	void displayOrderItem(vector<DrinkItem>&);
+	void printOrderItem(ofstream&, vector<DrinkItem>&);
 };
