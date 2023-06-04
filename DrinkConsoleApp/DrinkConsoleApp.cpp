@@ -169,6 +169,7 @@ void PrintOrder(vector<OrderItem>& order, vector<DrinkItem>& drinks, string mess
 	output_file << messagePrice << endl;
 	output_file << "售價：" << salePrice << endl;
 	output_file << "--------------------------------------" << endl;
+	output_file.close();
 }
 
 int main()
