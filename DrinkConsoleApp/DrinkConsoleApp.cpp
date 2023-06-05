@@ -134,4 +134,31 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<DrinkItem>& drinks) {
 	cout << messagePrice << endl;
 	cout << "售價： " << salePrice << endl;
 	cout << "----------------------------------" << endl;
+
+	//列印訂單
+	PrintOrder(order, drinks, messageTakeIn, messagePrice, totalPrice, salePrice);
+}
+
+void PrintOrder(vector<OrderItem>& order, vector<DrinkItem>& drinks, string& messageTakeIn, string& messagePrice, int totalPrice, int salePrice)
+{
+	string filename{ "order.txt" };
+	ofstream output_file{ filename };
+	if (!output_file.is_open()) {
+		cout << "無法寫入檔案: " << filename << endl;
+		return;
+	}
+	output_file << "----------------------------------" << endl;
+	output_file << "您所訂購的飲料如下：" << endl;
+	output_file << "----------------------------------" << endl;
+
+	for (OrderItem orderitem : order) {
+		orderitem.printOrderItem(output_file, drinks);
+	}
+
+	output_file << "----------------------------------" << endl;
+	output_file << "訂購方式： " << messageTakeIn << endl;
+	output_file << "總金額： " << totalPrice << endl;
+	output_file << messagePrice << endl;
+	output_file << "售價： " << salePrice << endl;
+	output_file << "----------------------------------" << endl;
 }
