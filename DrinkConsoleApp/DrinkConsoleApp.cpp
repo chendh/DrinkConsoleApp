@@ -56,20 +56,21 @@ vector<string> Split(const string& s, char delimiter) {
 	//將字串s依照分隔符號delimiter來進行分割，回傳一個字串陣列vector<string>
 	vector<string> tokens;
 	string token;
-	istringstream tokenStreams(s);
-	while (getline(tokenStreams, token, delimiter)) {
+	istringstream isstream(s);
+	while (getline(isstream, token, delimiter)) {
 		tokens.push_back(token);
 	}
 	return tokens;
 }
 
 string ReadFile(const string& filename){
-	auto output_sstream = ostringstream();
 	ifstream input_file(filename);
 	if (!input_file.is_open()) {
 		cout << "無法讀取檔案： " << filename << endl;
 		return "";
 	}
+
+	auto output_sstream = ostringstream();
 	output_sstream << input_file.rdbuf();
 	input_file.close();
 	return output_sstream.str();
